@@ -1,0 +1,33 @@
+h2, h3 {
+    font-family: "Helvetica", Arial, sans-serif;
+}
+
+ul#pgslist
+{
+list-style-type: none;
+padding: 0;
+margin: 0;
+float: left;
+/*width: 50%;*/
+color: #fff;
+background-color: #003399;
+}
+
+ul#pgslist li { display: inline; }
+
+ul#pgslist li a
+{
+float: left;
+width: 5em;
+color: #fff;
+background-color: #003399;
+padding: 0.2em 1em;
+text-decoration: none;
+border-right: 1px solid #fff;
+}
+
+ul#pgslist li a:hover
+{
+background-color: #CC0000;
+color: #fff;
+}
