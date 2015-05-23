@@ -1,0 +1,25 @@
+Outline
+
+Overview
+
+Section 1
+Force Related Data
+
+Section 2
+
+Section 3
+
+Section 4
+Database Info
+	-Street level availability - Year and month of all available street level crime data in ISO format.
+
+	-Crime categories - Returns a list of valid categories for a given data set date.
+	But can access list of all available crime categories by accessing 
+	https://data.police.uk/api/crime-categories
+
+	-Last updated - Crime data in the API is updated once a month.  Find out when it was last updated.
+
+Notes:
+Documentation is lacking in some areas. No comprehensive list of crime categories listed, no comprehensive list of location ids, no database schema
+
+-Location IDs are based on street unique identifiers

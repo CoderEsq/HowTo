@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The Data Set</title>
+    <link rel="stylesheet" href="styleguide.css">
+  </head>
+  <body>
+    <section>
+    <h2>A How-To Guide to the United Kingdom's Police Data API</h2>
+      <ul id="pgslist">
+      <li><a href="main.html">Overview</a></li>
+      <li><a href="pg1.html">The Data Set</a></li>
+      <li><a href="#">Page 3</a></li>
+      </ul>
+    </section>
+    <section>
+      <p> <br>
+      <h3>The Data Set</h3>
+      </p>
+      <p>
+      <h4>Street Level Availability</h4>
+      I'd like to cover three specific service requests that provide general information of the data set itself. The first request is the <i>Street Level Availability</i> request. This request can be created in PHP using the following PHP code which stores the result in the <code>$request</code> variable.</p>
+      <code>$request = 'https://data.police.uk/api/crimes-street-dates';</code>
+      <p>We then take the result and use the <code>file_get_contents()</code> function within PHP which reads the entire response into a string which we will store in the variable <code>$response</code>.</p>
+      <code>$response  = file_get_contents($request);</code>
+      <p>Since the API returns information in JSON (JavaScript Object Notation) format (you can view the raw JSON formatted data <a href="https://data.police.uk/api/crimes-street-dates">here</a>) we need to then format the string to convert it into a PHP array we can manipulate. For that task, we will use the <code>json_decode()</code> function.</p>
+      <code>$JSONarray  = json_decode($response, true);</code>
+      <p>We can then <a href="Street Level Availability.php ">print out a list</a>  for which months police data are available using the <code>foreach()</code> construct.<br></p>
+      <code>foreach ($JSONarray as $key => $value) {<br>
+      echo $value["date"] . "<"br">";<br>
+      }</code><br>
+      <p>This service request to the API demonstrates that it contains data from January 2011 to March 2015.</p>
+      <p>
+      <h4>Crime categories</h4>
+      The 2nd service request </p>
+    </section>
+    <section>
+      <div id="back">
+      <form action="main.html">
+        <input type="submit" value="Overview<-">
+      </form>
+      <form action="pg2.html">
+        <input type="submit" value="->The Data Set">
+      </form>
+      </div>
+    </section>
+  </body>
+</html>

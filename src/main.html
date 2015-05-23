@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>How-To Guide</title>
+    <link rel="stylesheet" href="styleguide.css">
+  </head>
+  <body>
+    <section>
+    <h2>A How-To Guide to the United Kingdom's Police Data API</h2>
+      <ul id="pgslist">
+      <li><a href="main.html">Overview</a></li>
+      <li><a href="pg1.html">The Data Set</a></li>
+      <li><a href="#">Page 3</a></li>
+      </ul>
+    </section>
+    <section>
+      <p> <br>
+      <h3>Overview</h3>
+      </p>
+      <p>The Home Office of the United Kingdom is the agency responsible for the police, immigration, and the internal security service of Great Britain. The Home Office has created a <a href="http://data.police.uk/docs/">police and crime data API</a> covering England, Wales, and Northern Ireland (but not Scotland). It is possible to access information related to various local police forces, crime related information, and neighborhood specific information through this API. The API can be queried using HTML GET requests and returns JSON objects.</p>
+      <p>This guide will walkthrough the various types of data available through the API and will demonstrate by using PHP examples how to make requests for specific types of data and how to process those requests to extract the information.</p>
+      <p>There are three general categories of information available within this database.
+      <ul>
+      <li>Force Related</li>
+      <li>Crime Related</li>
+      <li>Neighborhood Related</li>
+      </ul>
+       Each of these general categories have varying levels of completeness in regards to the data that is supposed to be available to the public. In addition, subcategories of requests within these general areas sometimes share unique key identifiers. Since this API lacks any documentation about the database itself, I have attempted to identify and document the primary keys for readers so they can execute more fruitful searches against the data.</p>
+      <p>Let's begin with some queries that provide information about the data set itself.</p>
+    </section>
+    <section>
+      <form action="pg1.html">
+        <input type="submit" value="->The Data Set">
+      </form>
+    </section>
+  </body>
+</html>
