@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Force Related Data</title>
+    <link rel="stylesheet" href="styleguide.css">
+  </head>
+  <body>
+    <section>
+    <h2>A How-To Guide to the United Kingdom's Police Data API</h2>
+      <ul id="pgslist">
+      <li><a href="main.html">Overview</a></li>
+      <li><a href="pg1.html">The Data Set</a></li>
+      <li><a href="pg2.html">Force Related Data</a></li>
+      <li><a href="pg3.html">Crime Related Data</a></li>
+      <li><a href="#">Neighborhood Related Data</a></li>
+      </ul>
+    </section>
+    <section>
+      <p> <br>
+      <h3>Force Related Data</h3>
+      </p>
+      <p>
+      <h4>List of Forces</h4>
+      A list of all police forces available through the API can be accessed through the <i>List of Forces</i> request. Like before, we will use PHP to make our API calls and store the result in the <code>$request</code> variable.</p>
+      <code>$request = 'https://data.police.uk/api/forces';</code>
+      <p>We can then take the result and again use the <code>file_get_contents()</code> function within PHP to read the entire response into a string and then decode the JSON formatted string into an array and print that array. This call returns both a "id" and "name" attribute. This "id" attribute serves as the primary key for the following service requests as well. Let's print the name attribute to see a <a href="forces.php">list of all police forces</a> in England, Wales, and Northern Ireland.</p>
+      <h4>Force Specific Information</h4>
+      A user may find information regarding a specific police force using the <i>Force Specific</i> request. The information returned from this API call includes description, URL, telephone, id, and name information of a particular police force. The request is formed as follows:</p> 
+      <code>$request = 'https://data.police.uk/api/forces/metropolitan';</code>
+      <p>As you can see, the request requires the user to append a force specific "id" attribute to the end of the request URL. You may examine the information returned from using this API request regarding the Metropolitan Police Force <a href="forceinfo.php">here</a>.</p>
+      <h4>Senior Officers</h4>
+      <p>One of the more interesting features of this API is the ability to retrieve substantial force specific information, including information about Senior Officers within a specific police force. Let's take a look at the senior officers of the Gloucestershire police force. First, we form our <i>Force Senior Officers</i> request (once again appending the force specific "id" to the end of the URL in the form of <code>...forces/["id"]/people</code>) and place a call to the API as so.</p> 
+      <code>$request = 'https://data.police.uk/api/forces/gloucestershire/people';</code>
+      <p>Then we need to read the response into a string and then decode the JSON formatted string.</p> 
+      <code>$response  = file_get_contents($request);</code><br>
+      <code> $JSONarray  = json_decode($response, true);</code>
+      <p>Now all that is left is to print the key:value pairs of the array. We can do that with the following:</p>
+      <code>foreach ($JSONarray as $key => $value) {<br>
+      echo $value["name"] . "<"br">";<br>
+      echo $value["rank"] . "<"br">";<br>
+      echo $value["bio"] . "<"br">";<br>
+      }</code><br>
+      <p>Which results in the <a href="forcespec.php">name, rank, and bio</a> of the senior officers of the Gloucestershire police force. Unfortunately, this API does not contain this information for the majority of police forces, only a few have provided as many details as this particular police department.</p>
+
+    </section>
+    <section>
+      <div id="back">
+      <form action="pg1.html">
+        <input type="submit" value="The Data Set<-">
+      </form>
+      <form action="pg3.html">
+        <input type="submit" value="->Crime Related Data">
+      </form>
+      </div>
+    </section>
+  </body>
+</html>
