@@ -13,22 +13,51 @@
       <li><a href="pg1.html">The Data Set</a></li>
       <li><a href="pg2.html">Force Related Data</a></li>
       <li><a href="pg3.html">Crime Related Data</a></li>
-      <li><a href="#">Neighborhood Related Data</a></li>
+      <li><a href="pg4.html">Neighborhood Related Data</a></li>
       </ul>
     </section>
     <section>
       <p> <br>
       <h3>Crime Related Data</h3>
       </p>
-
-
+      <p>
+      <h4>Street Level Crimes</h4>
+      We can take a look at street level crimes either within a 1 mile radius of a specific location within within a custom bound area using the <i>Street Level Crimes</i> request. If we wanted all street level crimes within a 1 mile radius for a specific month, we would form the request as follows and append the latitude and longitude of the center point to the end of the request URL along with the specific month and year.</p>
+      <code>$request = 'https://data.police.uk/api/crimes-street/all-crime?lat=51.232417&lng=-0.332361&date=2015-01';</code>
+      <p>Then we would process the result in the same way that we have been doing. This call returns several pieces of information including the date, crime category of the offense, the street ID and other location information of where the crime took place, the police force type that responded (either a normal police force or the British Transport Police which is a special police force for railways and light-rail systems), and a unique 64-character identifier for that specific crime. This unique identifier serves as a primary key which can be used to track outcomes for a specific crime. I wanted to see all the crime in the database which occurred in January of this year within 1 mile of the town of Dorking located South of London in Surrey. You can see the results of this request <a href="streetcrime.php">here</a>.</p>
+      <p>
+      <h4>Crimes at a Location</h4>
+      Now if we wanted to see the similar crime information for a given month at a specific location (not including other crimes within a 1 mile radius) we would use the <i>Crimes at a Location</i> request. Similar to the Street Level Crimes request, we would form our request URL by appending the date and geographic coordinates to the end of the request URL. Though, in this request, that information is in a different order.</p>
+      <code>$request = 'https://data.police.uk/api/crimes-at-location?date=2015-01&lat=51.500796&lng=-0.124357';</code>
+      <p>I was curious about the level of crime that occurs in the <a href="crimeloc.php">immediate vicinity of Big Ben</a> so I created a request and processed the results for that location. I didn't expect the number of arson related offenses.</p>
+      <p>
+      <h4>Outcomes for a Specific Crime</h4>
+      Now if we wanted to track the outcome and status for a single crime, we would use the <i>Outcomes for a Specific Crime</i> request. We prepare our request as follows using the 64 character unique key:</p>
+      <code>$request = 'https://data.police.uk/api/outcomes-for-crime/7e7a6ef5ba39f5322bbbbc6df4cbf4e104b5af84d372cdc53ebcb788e25b7234';</code>
+      <p>We can then process the request as we have done before including decoding the JSON formatted string into an array. But this array actually has nested arrays so we are going to display this information a little differently by using a function that will be recursively called when it comes across a nested array. We use the following code to do that.</p>
+      <code>function printArray($JSONarray) {<br>
+      echo '"<"br>';<br>
+      foreach ($JSONarray as $key => $value) {<br>
+      echo "$key: ";<br>
+      if (is_array($value)) {<br>
+      printArray($value);<br>
+      }<br>
+      else {<br>
+      echo $value . '<'br />';<br>
+      }<br>
+      }<br>
+      echo '<'br>';<br>
+      }<br>
+      printArray($JSONarray);
+      </code><br>
+      <p>You can see the <a href="crimeout.php">outcome</a> of a particular crime which occurred in March of this year in the Hatton Garden neighborhood of London (which is the jewelry district). In this case, no suspect was identified in the crime but in other instances it is possible to track the status of a crime from the initial investigation phase all the way through sentencing. In the next section, I'll cover Neighborhood Related service requests.</p>
     </section>
     <section>
       <div id="back">
       <form action="pg2.html">
         <input type="submit" value="Force Related Data<-">
       </form>
-      <form action="pg2.html">
+      <form action="pg4.html">
         <input type="submit" value="->Neighborhood Related Data">
       </form>
       </div>

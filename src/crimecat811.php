@@ -5,7 +5,7 @@ echo '<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title></title>
+<title>Crime Types in August</title>
 </head>
 <body>';
 
