@@ -5,7 +5,7 @@ echo '<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title></title>
+<title>Last Updated</title>
 </head>
 <body>';
 

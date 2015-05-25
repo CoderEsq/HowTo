@@ -26,7 +26,7 @@
       <code>$request = 'https://data.police.uk/api/crimes-street-dates';</code>
       <p>We then take the result and use the <code>file_get_contents()</code> function within PHP which reads the entire response into a string which we will store in the variable <code>$response</code>.</p>
       <code>$response  = file_get_contents($request);</code>
-      <p>Since the API returns information in JSON (JavaScript Object Notation) format (you can view the raw JSON formatted data <a href="https://data.police.uk/api/crimes-street-dates">here</a>) we need to then format the string to convert it into a PHP array we can manipulate. For that task, we will use the <code>json_decode()</code> function.</p>
+      <p>Since the API returns information in JSON (JavaScript Object Notation) format, (you can view an example of the raw JSON formatted data <a href="https://data.police.uk/api/crimes-street-dates">here</a>) we need to then format the string to convert it into a PHP array we can manipulate. For that task, we will use the <code>json_decode()</code> function.</p>
       <code>$JSONarray  = json_decode($response, true);</code>
       <p>We can then <a href="Street Level Availability.php">print out a list</a>  for which months police data are available using the <code>foreach()</code> construct.<br></p>
       <code>foreach ($JSONarray as $key => $value) {<br>
@@ -39,7 +39,7 @@
       <code>$request = 'https://data.police.uk/api/crime-categories?date=2011-08';</code>
       <p>Processing this request in a similar manner as stated above will create a list of the different categories of crimes reported in a given month. As you can see in the request URL, by appending <code>?date=2011-08</code> (which is a month/year combination in the form of YYYY-MM) to the query string we can return a list of the crime categories reported in <a href="crimecat811.php">August of 2011</a>. As you can see from the generated list, not all the crime categories are listed. In order to do that, just remove the "date" portion of the query string from the service request.</p>
       <code>$request = 'https://data.police.uk/api/crime-categories';</code>
-      <p>The response from this request can then be used to generate a  <a href="crimecat.php">full list</a> of available crime categories. In all honesty, I expected far more granular data about the crime categories. The Home Office decided that "bicycle theft" was deserving of its own category but yet far more serious crimes like murder/rape/assault should be grouped together under the catch-all category "Violence and sexual offences." I find that to be an odd choice.</p>
+      <p>The response from this request can then be used to generate a  <a href="crimecat.php">full list</a> of available crime categories. In all honesty, I expected far more granular data about the crime categories. The Home Office decided that "bicycle theft" was deserving of its own category but yet far more serious crimes like murder/rape/assault are grouped together under the catch-all category "Violence and sexual offences." I find that to be an odd choice because I think there is more public interest in seeing very narrow and specific information of the most serious offenses.</p>
       <p>
       <h4>Last Updated</h4>
       The final service request that I would like to cover that provides general information about the data set is the <i>Last Updated</i> request. This request merely returns the date of the last update to the API and can be created using the following code:</p>
