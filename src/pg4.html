@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Neighborhood Related Data</title>
+    <link rel="stylesheet" href="styleguide.css">
+  </head>
+  <body>
+    <section>
+    <h2>A How-To Guide to the United Kingdom's Police Data API</h2>
+      <ul id="pgslist">
+      <li><a href="main.html">Overview</a></li>
+      <li><a href="pg1.html">The Data Set</a></li>
+      <li><a href="pg2.html">Force Related Data</a></li>
+      <li><a href="pg3.html">Crime Related Data</a></li>
+      <li><a href="pg4.html">Neighborhood Related Data</a></li>
+      </ul>
+    </section>
+    <section>
+      <p> <br>
+      <h3>Neighborhood Related Data</h3>
+      </p>
+      <p>
+      <h4>Specific Neighborhood Information</h4>
+      The API can also provide information regarding specific neighborhoods. A unique ID is assigned for every neighborhood covered by a particular police force. In order to obtain a list of unique ID for neighborhoods covered by a particular police force, we would make a request in the following format:</p>
+      <code>$request = 'https://data.police.uk/api/leicestershire/neighbourhoods';</code>
+      <p>As you can see the specific police force is specified in the request URL followed by the <code>/neighbourhoods</code> designation. In order to access information regarding a specific neighborhood we form our request as follows by appending the specific police force as well as the unique identifying ID for a specific neighborhood to the end of the request URL.</p>
+      <code>$request = 'https://data.police.uk/api/leicestershire/C01';</code>
+      <p>We then process the request in a similar fashion to what we have been doing before. Some of the information returned from the API for this type of service request includes a URL of the neighborhood police force, the name of the neighborhood, a description of the neighborhood, as well as the unique ID of the neighborhood, and the population. The information for the New Parks neighborhood of Leicestershire is displayed <a href="specneigh.php">here</a>.</p>
+      <p>
+      <h4>Neighborhood Team</h4>
+      In addition, the API provides information regarding neighborhood specific police forces. We would form the request as follows:</p>
+      <code>$request = 'https://data.police.uk/api/leicestershire/C01/people';</code>
+      <p>As you can see, we append the neighborhood specific ID after the police force specific ID and then append <code>/people</code> designation at the end. This service request returns information similar to the <i>Senior Officers Information</i> request that provides information about the Senior Officers of the entire police force. This request provides information regarding police officers of the specific police force responsible for this neighborhood. The information regarding the police force in charge of the New Parks policing team can be seen <a href="neighteam.php">here</a>.</p>
+      <p>The UK API provides quite a bit of information to users regarding various police forces, crime data, and neighborhood specific policing information. Overall, the API is pretty accessible but there are some shortcomings. I would prefer if more police forces would provide information and I think more granular criminal data would be beneficial. That being said, I think an API for police data is a great idea and can provide valuable information to a public who have oversight responsibility.</p>
+    </section>
+    <section>
+      <div id="back">
+      <form action="pg3.html">
+        <input type="submit" value="Crime Related Data<-">
+      </form>
+      </div>
+    </section>
+  </body>
+</html>
